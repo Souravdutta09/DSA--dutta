@@ -1,0 +1,26 @@
+hadoop 
+
+input --input.text 
+classes -empty
+WordCount.java --code
+
+
+export HADOOP_CLASSPATH=$(hadoop classpath)
+
+
+javac -classpath `hadoop classpath` -d classes WordCount.java
+
+
+
+jar -cvf wordcount.jar -C classes/ .
+
+added manifest
+adding: WordCount.class(in = 1511) (out= 830)(deflated 45%)
+adding: WordCount$IntSumReducer.class(in = 1755) (out= 748)(deflated 57%)
+adding: WordCount$TokenizerMapper.class(in = 1752) (out= 764)(deflated 56%)
+
+hadoop jar wordcount.jar WordCount /home/nikhil/Desktop/code/input/input output
+
+
+cat output/part-r-00000
+
